@@ -2,9 +2,13 @@ import CharactersDetails from '@/app/components/charactersDetails'
 import React from 'react'
 import { notFound } from 'next/navigation'
 
-async function CharactersDetailsPage({ params }) {
+async function CharactersDetailsPage({ params, searchParams }) {
   const resolvedParams = await params
+  const resolvedSearchParams = await searchParams
+
   const id = Number(resolvedParams.id)
+  const fromPage = resolvedSearchParams.from || 1
+
 
   let character = null
   let currentPage = 1
@@ -28,7 +32,7 @@ async function CharactersDetailsPage({ params }) {
   }
 
   return (
-    <CharactersDetails character={character} />
+    <CharactersDetails character={character} fromPage={fromPage} />
   )
 }
 

@@ -1,16 +1,20 @@
 import Link from 'next/link'
 
-export const dynamic = 'force-static'
-
 async function Characters({ searchParams }) {
     const resolvedSearchParams = await searchParams
     const page = resolvedSearchParams.page || 1
     const limit = 20
 
-    const response = await fetch(`https://theofficeapi.dev/api/characters?page=${page}&limit=${limit}`, {
-       next: { revalidate: 3600 }
 
+    const response = await fetch(`https://theofficeapi.dev/api/characters?page=${page}&limit=${limit}`, {
+        cache: 'no-store'
     })
+
+// O export const dynamic = 'force-static' estava forçando a página a ser estática (SSG), 
+// entao ela era pré-renderizada no build com page=1 e não conseguia responder aos parâmetros de
+// URL dinâmicos.
+// para ser (SSG) seria necessário usar generateStaticParams para pré-gerar todas as 9 páginas no build.
+
     const data = await response.json()
 
     return (
@@ -21,7 +25,7 @@ async function Characters({ searchParams }) {
                 {data.results.map((character) => (
                     <Link
                         key={character.id}
-                        href={`/characters/${character.id}`}
+                        href={`/characters/${character.id}?from=${page}`}
                         className="block p-4 border rounded hover:bg-gray-50 transition"
                     >
                         <h2 className="text-xl font-semibold">{character.name}</h2>

@@ -8,8 +8,11 @@ function Header() {
             <Link href="/" className="mr-4 hover:underline">
                 Home
             </Link>
-            <Link href="/characters" className="hover:underline">
+            <Link href="/characters" className="mr-4 hover:underline">
                 Characters
+            </Link>
+            <Link href="/about" className="hover:underline">
+                About
             </Link>
         </header>
     )
