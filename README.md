@@ -8,9 +8,7 @@ Projeto prático para fixar conceitos de renderização no Next.js usando [The O
 
 ## Demonstração
 
-![Image](
-https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHI0eDE2eTFoMXByZ3lzaXdndXBpYTBwMDZ6cW9wazJ4dWw0N3FtcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/187yf7yjncHJtAked8/giphy.gif)
-
+![Demo](./public/gif.gif)
 
 ## Estrutura
 
@@ -23,7 +21,7 @@ app/
 └── layout.js
 ```
 
-## Conceitos Aplicados
+## 🔑 Conceitos Aplicados
 
 | Conceito | Onde | Como |
 |----------|------|------|
@@ -34,7 +32,7 @@ app/
 | **App Router** | Estrutura | Roteamento moderno do Next.js |
 | **Dynamic Routing** | `app/characters/[id]` | Rotas dinâmicas com parâmetros |
 
-## Como Rodar
+## 🚀 Como Rodar
 
 ```bash
 npm install
@@ -43,7 +41,7 @@ npm run dev
 
 Acesse: [http://localhost:3000](http://localhost:3000)
 
-## Aprendizados
+## 📚 Aprendizados
 
 - ✅ Diferença prática entre SSG e SSR
 - ✅ Quando usar cada estratégia de renderização
