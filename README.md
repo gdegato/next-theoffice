@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# The Office Explorer
 
-## Getting Started
+Aplicação Next.js que demonstra **SSG**, **SSR** e **Data Fetching** no App Router.
 
-First, run the development server:
+## 🎯 Objetivo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Projeto prático para fixar conceitos de renderização no Next.js usando [The Office API](https://theofficeapi.dev/).
+
+## 🏗️ Estrutura
+
+```
+app/
+├── page.js                    # Home (SSG)
+├── characters/
+│   ├── page.js               # Lista de personagens (SSG + Revalidação)
+│   └── [id]/page.js          # Detalhe do personagem (SSR)
+└── layout.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔑 Conceitos Aplicados
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+| Conceito | Onde | Como |
+|----------|------|------|
+| **SSG** | `app/page.js` | Conteúdo estático pré-renderizado |
+| **SSG + Revalidação** | `app/characters/page.js` | `revalidate: 3600` (atualiza a cada 1h) |
+| **SSR** | `app/characters/[id]/page.js` | `cache: 'no-store'` (renderiza a cada request) |
+| **Server Components** | Todas as páginas | `async/await` direto, sem `useEffect` |
+| **App Router** | Estrutura | Roteamento moderno do Next.js |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Como Rodar
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Acesse: [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📚 Aprendizados
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ✅ Diferença prática entre SSG e SSR
+- ✅ Quando usar cada estratégia de renderização
+- ✅ Fetch no servidor com Server Components
+- ✅ Revalidação automática de dados estáticos
+- ✅ Roteamento dinâmico no App Router
 
-## Deploy on Vercel
+## 🔗 API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[The Office API](https://theofficeapi.dev/) - API pública sem autenticação.
