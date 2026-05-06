@@ -1,55 +1,72 @@
 # The Office Explorer
 
-Aplicação Next.js que demonstra **SSG**, **SSR** e **Data Fetching** no App Router.
+Este projeto é uma aplicação Next.js construída para aprender mais sobre o App Router, Server Components e rotas dinâmicas.
 
-## 🎯 Objetivo
+## 🎯 Objetivo do Projeto
 
-Projeto prático para fixar conceitos de renderização no Next.js usando [The Office API](https://theofficeapi.dev/).
+- Aprender conceitos modernos do Next.js 16
+- Experimentar rotas dinâmicas com `app/characters/[id]/page.js`
+- Entender fetch no servidor e renderização dinâmica
+- Praticar paginação com query params no App Router
 
-## Demonstração
-
-![Demo](./public/gif.gif)
-
-## Estrutura
+## 📂 Estrutura do Projeto
 
 ```
 app/
-├── page.js                    # Home (SSG)
-├── characters/
-│   ├── page.js               # Lista de personagens (SSR com paginação)
-│   └── [id]/page.js          # Detalhe do personagem (SSR)
-└── layout.js
+├── page.js                    # Home com link para personagens
+├── about/page.js              # Página sobre o projeto
+├── characters/page.js         # Lista de personagens paginada
+├── characters/[id]/page.js    # Detalhe de personagem via rota dinâmica
+├── layout.js                  # Layout global e Header
+├── globals.css                # Estilos globais
+└── components/
+    ├── header.js             # Navegação comum
+    └── charactersDetails.js  # Componente de detalhe do personagem
 ```
-
-## 🔑 Conceitos Aplicados
-
-| Conceito | Onde | Como |
-|----------|------|------|
-| **SSG** | `app/page.js` | Conteúdo estático pré-renderizado |
-| **SSR** | `app/characters/page.js` | `cache: 'no-store'` (renderiza a cada request) |
-| **SSR** | `app/characters/[id]/page.js` | `cache: 'no-store'` (renderiza a cada request) |
-| **Server Components** | Todas as páginas | `async/await` direto, sem `useEffect` |
-| **App Router** | Estrutura | Roteamento moderno do Next.js |
-| **Dynamic Routing** | `app/characters/[id]` | Rotas dinâmicas com parâmetros |
 
 ## 🚀 Como Rodar
 
+1. Instale dependências
+
 ```bash
 npm install
+```
+
+2. Execute o servidor de desenvolvimento
+
+```bash
 npm run dev
 ```
 
-Acesse: [http://localhost:3000](http://localhost:3000)
+3. Abra no navegador
 
-## 📚 Aprendizados
+```text
+http://localhost:3000
+```
 
-- ✅ Diferença prática entre SSG e SSR
-- ✅ Quando usar cada estratégia de renderização
-- ✅ Fetch no servidor com Server Components
-- ✅ Roteamento dinâmico no App Router
-- ✅ Paginação com query parameters (`?page=2`)
-- ✅ Manutenção de estado via URL
+## 💡 O que este app faz
 
-## 🔗 API
+- Página inicial com link para a lista de personagens
+- Lista de personagens carregada de `https://theofficeapi.dev/api/characters`
+- Paginação via `?page=1`, `?page=2` etc.
+- Detalhe de personagem usando rota dinâmica `app/characters/[id]`
+- Botão de volta que preserva a página de origem via query string `from`
 
-[The Office API](https://theofficeapi.dev/) - API pública sem autenticação.
+## 🔧 Tecnologias usadas
+
+- `next@16.2.4`
+- `react@19.2.4`
+- `react-dom@19.2.4`
+- `tailwindcss@4`
+- `eslint@9`
+- `eslint-config-next@16.2.4`
+
+## 🧠 Aprendizados importantes
+
+- `app/characters/page.js` usa fetch no servidor e `cache: 'no-store'` para gerar HTML dinâmico a cada request
+- `app/characters/[id]/page.js` é uma rota dinâmica que lê `params.id`
+- `Link` do `next/link` mantém navegação cliente sem recarregar a página
+- `searchParams` permite ler `?page=` e `?from=` no App Router
+- `notFound()` do `next/navigation` mostra 404 quando o personagem não é encontrado
+
+---
